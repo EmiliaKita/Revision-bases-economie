@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Site de révision CEJM économie - BTS SIO première année">
+  <title>CEJM — Révisions d'économie</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#accueil" aria-label="Accueil CEJM"><span class="brand-mark">C</span><span>CEJM<span class="brand-sub"> / ÉCONOMIE</span></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu">☰</button>
+    <nav id="mainNav">
+      <a href="#accueil" class="nav-link active">Accueil</a>
+      <a href="#quiz" class="nav-link">Quiz</a>
+      <a href="#flashcards" class="nav-link">Flashcards</a>
+      <a href="#methode" class="nav-link">Méthode</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="hero-copy">
+        <p class="eyebrow">BTS SIO · PREMIÈRE ANNÉE · CEJM</p>
+        <h1>Révise l’économie.<br><em>Progresse à chaque question.</em></h1>
+        <p class="hero-text">60 questions pour revoir les notions de base de ton cours, du niveau découverte au niveau avancé. Chaque question du quiz possède sa flashcard correspondante.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#quiz">Commencer les quiz <span>→</span></a>
+          <a class="button secondary" href="#flashcards">Voir les flashcards</a>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="panel-label">TON PARCOURS DE RÉVISION</div>
+        <div class="big-number">60</div>
+        <div class="panel-caption">questions · 3 niveaux · 60 flashcards</div>
+        <div class="progress-track"><span id="globalProgress"></span></div>
+        <div class="panel-bottom"><span id="globalDone">0 / 60 maîtrisées</span><span>À ton rythme</span></div>
+        <div class="mini-tags"><span>QCM</span><span>Mémorisation</span><span>Corrections expliquées</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="quiz">
+      <div class="section-heading">
+        <div><p class="eyebrow">01 / S’ENTRAÎNER</p><h2>Les quiz</h2><p class="muted">20 questions par niveau. Choisis une réponse pour afficher la correction et l’explication.</p></div>
+        <div class="score-chip"><span class="score-dot"></span><span id="scoreSummary">Aucune réponse pour le moment</span></div>
+      </div>
+      <div class="level-tabs" id="quizLevels">
+        <button class="level-tab selected" data-level="1"><span class="level-num">01</span><span><b>Les bases</b><small>Découverte</small></span><span class="tab-count">20 Q</span></button>
+        <button class="level-tab" data-level="2"><span class="level-num">02</span><span><b>Comprendre</b><small>Intermédiaire</small></span><span class="tab-count">20 Q</span></button>
+        <button class="level-tab" data-level="3"><span class="level-num">03</span><span><b>Approfondir</b><small>Avancé</small></span><span class="tab-count">20 Q</span></button>
+      </div>
+      <div class="quiz-layout">
+        <aside class="quiz-side">
+          <div class="side-title">Progression du niveau</div>
+          <div class="side-progress"><span id="levelProgress"></span></div>
+          <p id="levelProgressText">0 / 20 questions répondues</p>
+          <div class="question-grid" id="questionGrid"></div>
+          <button class="reset-link" id="resetLevel">↻ Recommencer ce niveau</button>
+        </aside>
+        <article class="question-card">
+          <div class="question-meta"><span id="questionLevel">NIVEAU 1 · LES BASES</span><span id="questionIndex">QUESTION 01 / 20</span></div>
+          <h3 id="questionText">Chargement de la question…</h3>
+          <div class="answers" id="answers"></div>
+          <div class="feedback hidden" id="feedback" aria-live="polite"></div>
+          <div class="question-controls"><button class="button secondary small" id="prevQuestion">← Précédente</button><button class="button primary small" id="nextQuestion">Suivante →</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section flash-section" id="flashcards">
+      <div class="section-heading">
+        <div><p class="eyebrow">02 / MÉMORISER</p><h2>Les flashcards</h2><p class="muted">Les 60 questions des quiz sont reprises ici. Essaie de répondre mentalement avant de retourner la carte.</p></div>
+        <div class="flash-counter"><b id="flashCounter">1 / 60</b><span>carte affichée</span></div>
+      </div>
+      <div class="flash-toolbar">
+        <div class="filter-group" id="flashFilters">
+          <button class="filter active" data-filter="all">Toutes <span>60</span></button>
+          <button class="filter" data-filter="1">Niveau 1</button>
+          <button class="filter" data-filter="2">Niveau 2</button>
+          <button class="filter" data-filter="3">Niveau 3</button>
+        </div>
+        <div class="flash-controls-top">
+          <label class="search-box"><span>⌕</span><input id="flashSearch" type="search" placeholder="Rechercher une notion…"></label>
+          <label class="known-toggle"><input type="checkbox" id="onlyUnknown"> À revoir uniquement</label>
+        </div>
+      </div>
+      <div class="flash-area">
+        <div class="flash-card" id="flashCard" tabindex="0" role="button" aria-label="Retourner la flashcard">
+          <div class="flash-card-inner">
+            <div class="flash-face flash-front">
+              <div class="flash-top"><span id="flashLevel">NIVEAU 1 · LES BASES</span><span>QUESTION</span></div>
+              <div class="flash-content"><span class="flash-icon">?</span><h3 id="flashQuestion">Question</h3><p>Essaie de répondre avant de retourner la carte.</p></div>
+              <div class="flash-bottom"><span>CEJM · ÉCONOMIE</span><span>Cliquer pour retourner ↻</span></div>
+            </div>
+            <div class="flash-face flash-back">
+              <div class="flash-top"><span>RÉPONSE & EXPLICATION</span><span id="flashAnswerNumber">01 / 60</span></div>
+              <div class="flash-content"><span class="answer-label">À RETENIR</span><h3 id="flashAnswer">Réponse</h3><p id="flashExplanation">Explication</p></div>
+              <div class="flash-bottom"><span>Prends le temps de comprendre</span><span>Cliquer pour revenir ↻</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="flash-nav">
+          <button class="button secondary" id="flashPrev">← Précédente</button>
+          <button class="button primary" id="flipFlash">Retourner la carte</button>
+          <button class="button secondary" id="flashNext">Suivante →</button>
+        </div>
+        <div class="flash-status"><span id="flashStatus">Carte non maîtrisée</span><button id="markKnown" class="known-button">✓ Je maîtrise cette carte</button></div>
+      </div>
+      <p class="flash-note">Astuce : marque une carte comme maîtrisée seulement si tu peux expliquer la notion sans regarder la réponse.</p>
+    </section>
+
+    <section class="section method-section" id="methode">
+      <div class="section-heading"><div><p class="eyebrow">03 / BIEN RÉVISER</p><h2>Une méthode simple</h2><p class="muted">Pour retenir les notions plutôt que simplement reconnaître les bonnes réponses.</p></div></div>
+      <div class="method-grid">
+        <div class="method-card"><span class="method-number">01</span><h3>Commence par le niveau 1</h3><p>Vérifie que tu connais les définitions essentielles : marché, offre, demande, agents économiques, banque…</p></div>
+        <div class="method-card"><span class="method-number">02</span><h3>Explique tes réponses</h3><p>Après chaque QCM, lis l’explication. Si tu as répondu juste au hasard, considère que la notion reste à revoir.</p></div>
+        <div class="method-card"><span class="method-number">03</span><h3>Revois les flashcards</h3><p>Cache la réponse, formule-la avec tes mots, puis retourne la carte. Recommence les cartes difficiles.</p></div>
+      </div>
+      <div class="course-note"><b>À propos du contenu</b><p>Les questions sont construites à partir de la partie « Notion de bases » de ton fichier de cours, en se concentrant sur l’économie : marché, offre et demande, concurrence, circuit économique, agents économiques, banques, financement et externalités. Les formulations ont été simplifiées pour faciliter la mémorisation.</p></div>
+    </section>
+  </main>
+  <footer><span>CEJM · Révisions d’économie · BTS SIO</span><span>Bon courage pour ton contrôle !</span></footer>
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
